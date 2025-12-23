@@ -259,9 +259,10 @@ HELP_TEXT = """<b>Timezone Converter Bot</b>
 Также: UTC+X, Asia/Almaty и др.
 
 ━━━━━━━━━━━━━━━━━━━━━
-Разработчик: @AnmiTaliDev
+Разработчики: @AnmiTaliDev & @TriVedRa
 GitHub: <a href="https://github.com/AnmiTaliDev/tzc">AnmiTaliDev/tzc</a>
 Лицензия: GNU GPL 3.0
+Инициатор: @TriVedRa
 """
 
 bot = telebot.TeleBot(os.getenv('BOT_TOKEN'))
