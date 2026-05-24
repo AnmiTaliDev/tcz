@@ -1,8 +1,8 @@
-# Использование бота
+# Usage
 
-## Конвертация времени
+## Time conversion
 
-Напишите время в формате `ЧЧ:ММ (часовой_пояс)`:
+Send a message in the format `HH:MM (timezone)`:
 
 ```
 13:00 (МСК)
@@ -11,31 +11,28 @@
 12:00 (астана)
 ```
 
-Бот ответит временем во всех поддерживаемых часовых поясах.
+The bot replies with the time in all supported cities.
 
-## Текущее время
+## Current time
 
-### В личных сообщениях
-Просто напишите боту что угодно — он покажет текущее время во всех зонах.
+**In private chat:** send any message.
 
-### В группах
-- Упомяните бота: `@username_бота`
-- Или ответьте на сообщение бота
+**In groups:**
+- Mention the bot: `@bot_username`
+- Or reply to a bot message
 
-## Inline-режим
+## Inline mode
 
-В любом чате введите:
+In any chat:
 ```
-@username_бота 13:00 МСК
+@bot_username 13:00 МСК
 ```
 
-Появится предложение отправить конвертированное время.
+## Supported timezones
 
-## Поддерживаемые часовые пояса
-
-### СНГ
-| Алиас | Часовой пояс |
-|-------|--------------|
+### CIS
+| Alias | Timezone |
+|-------|----------|
 | мск, москва, спб, питер | Europe/Moscow |
 | киев, украина | Europe/Kiev |
 | минск, беларусь | Europe/Minsk |
@@ -47,18 +44,18 @@
 | душанбе, таджикистан | Asia/Dushanbe |
 | ашхабад, туркменистан | Asia/Ashgabat |
 
-### Казахстан
-| Алиас | Часовой пояс |
-|-------|--------------|
+### Kazakhstan
+| Alias | Timezone |
+|-------|----------|
 | астана, алматы, казахстан, караганда | Asia/Almaty |
 | актау | Asia/Aqtau |
 | актобе | Asia/Aqtobe |
 | атырау | Asia/Atyrau |
 | костанай | Asia/Qostanay |
 
-### Россия
-| Алиас | Часовой пояс |
-|-------|--------------|
+### Russia
+| Alias | Timezone |
+|-------|----------|
 | калининград | Europe/Kaliningrad |
 | самара | Europe/Samara |
 | екатеринбург, екб | Asia/Yekaterinburg |
@@ -71,9 +68,9 @@
 | магадан | Asia/Magadan |
 | камчатка | Asia/Kamchatka |
 
-### Европа
-| Алиас | Часовой пояс |
-|-------|--------------|
+### Europe
+| Alias | Timezone |
+|-------|----------|
 | лондон, англия, uk | Europe/London |
 | париж, франция | Europe/Paris |
 | берлин, германия | Europe/Berlin |
@@ -86,9 +83,9 @@
 | хельсинки, финляндия | Europe/Helsinki |
 | стокгольм, швеция | Europe/Stockholm |
 
-### Азия
-| Алиас | Часовой пояс |
-|-------|--------------|
+### Asia
+| Alias | Timezone |
+|-------|----------|
 | дубай, оаэ | Asia/Dubai |
 | токио, япония | Asia/Tokyo |
 | сеул, корея | Asia/Seoul |
@@ -99,28 +96,27 @@
 | джакарта, индонезия | Asia/Jakarta |
 | дели, мумбаи, индия | Asia/Kolkata |
 
-### Америка
-| Алиас | Часовой пояс |
-|-------|--------------|
+### Americas
+| Alias | Timezone |
+|-------|----------|
 | нью-йорк, ny | America/New_York |
 | лос-анджелес, la | America/Los_Angeles |
 | чикаго | America/Chicago |
 | торонто, канада | America/Toronto |
 
-### Океания
-| Алиас | Часовой пояс |
-|-------|--------------|
+### Oceania
+| Alias | Timezone |
+|-------|----------|
 | сидней, австралия | Australia/Sydney |
 | окленд, новая зеландия | Pacific/Auckland |
 
-### UTC смещения
+### UTC offsets
 ```
-UTC+0, UTC+1, UTC+2, ..., UTC+14
+UTC+0, UTC+1, ..., UTC+14
 UTC-1, UTC-2, ..., UTC-12
 ```
 
-### Полные названия зон
-Также поддерживаются полные названия IANA:
+### Full IANA names
 ```
 Asia/Almaty
 Europe/Moscow

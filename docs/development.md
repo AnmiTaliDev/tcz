@@ -1,97 +1,44 @@
-# Разработка
+# Development
 
-## Структура проекта
+## Dependencies
 
-```
-tzc/
-├── main.py           # Основной код бота
-├── requirements.txt  # Зависимости Python
-├── .env              # Токен бота (не в git)
-├── .env.example      # Пример .env файла
-├── Dockerfile        # Docker образ
-├── docker-compose.yml
-├── .dockerignore
-├── .gitignore
-├── LICENSE           # GNU GPL 3.0
-└── docs/
-    ├── setup.md      # Настройка
-    ├── usage.md      # Использование
-    └── development.md # Разработка
-```
+| Library | Purpose |
+|---|---|
+| tgbot-cpp | Telegram Bot API |
+| Howard Hinnant date | Timezone support (IANA tzdata) |
+| OpenSSL | TLS for Telegram API |
+| Boost.System | Network I/O (tgbot-cpp dependency) |
+| libcurl | HTTP (tgbot-cpp dependency) |
 
-## Добавление нового часового пояса
-
-### 1. Добавить алиас
-
-В `TIMEZONE_ALIASES` добавьте новые алиасы:
-
-```python
-TIMEZONE_ALIASES = {
-    # ...
-    "новый_город": "Region/City",
-    "алиас": "Region/City",
-}
-```
-
-Названия зон можно найти в [списке IANA](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
-
-### 2. Добавить в вывод (опционально)
-
-Если хотите, чтобы город отображался в списке времени:
-
-```python
-CITIES = {
-    # ...
-    "🇽🇽 Город": "Region/City",
-}
-```
-
-## Зависимости
-
-| Пакет | Назначение |
-|-------|------------|
-| pyTelegramBotAPI | Telegram Bot API |
-| pytz | Часовые пояса |
-| python-dotenv | Чтение .env файлов |
-
-## Локальная разработка
+## Build
 
 ```bash
-# Создать виртуальное окружение
-python -m venv venv
-source venv/bin/activate  # Linux/Mac
-# или
-venv\Scripts\activate     # Windows
+sudo apt-get install cmake build-essential libssl-dev \
+    libboost-system-dev libcurl4-openssl-dev tzdata
 
-# Установить зависимости
-pip install -r requirements.txt
+git clone https://github.com/reo7sp/tgbot-cpp
+cd tgbot-cpp && cmake . && make -j$(nproc) && sudo make install && cd ..
 
-# Запустить
-python main.py
+git clone https://github.com/HowardHinnant/date
+cd date && cmake -DUSE_SYSTEM_TZ_DB=ON -DBUILD_TZ_LIB=ON -DENABLE_DATE_TESTING=OFF .
+make -j$(nproc) && sudo make install && cd ..
+
+cmake -DCMAKE_BUILD_TYPE=Release .
+make -j$(nproc)
+
+BOT_TOKEN=your_token ./tcz
 ```
 
-## Тестирование изменений
+## Adding a timezone alias
 
-1. Создайте тестового бота в @BotFather
-2. Используйте его токен для разработки
-3. Проверьте:
-   - Конвертация времени: `13:00 (МСК)`
-   - Текущее время в ЛС
-   - Работа в группе
-   - Inline-режим
-   - Команды /start и /help
+In `src/aliases.cpp`, inside `get_timezone_aliases()`:
+```cpp
+{"city_alias", "Region/City"},
+```
 
-## Контрибьютинг
+To add a city to the output, add it to `get_cities()`:
+```cpp
+{"City Name", "Region/City"},
+```
 
-1. Форкните репозиторий
-2. Создайте ветку: `git checkout -b feature/название`
-3. Внесите изменения
-4. Закоммитьте: `git commit -m "Описание"`
-5. Запушьте: `git push origin feature/название`
-6. Создайте Pull Request
-
-## Лицензия
-
-GNU General Public License v3.0
-
-Вы можете свободно использовать, изменять и распространять этот код при условии сохранения той же лицензии.
+Zone names follow the [IANA tz database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).

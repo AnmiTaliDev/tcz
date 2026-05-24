@@ -1,110 +1,35 @@
-# Настройка бота
+# Setup
 
-## 1. Создание бота в BotFather
+## 1. Create a bot via BotFather
 
-1. Откройте [@BotFather](https://t.me/BotFather)
-2. Отправьте `/newbot`
-3. Введите имя бота (например: `Timezone Converter`)
-4. Введите username бота (например: `MyTimezoneBot`)
-5. Скопируйте токен
+1. Open [@BotFather](https://t.me/BotFather)
+2. Send `/newbot`, enter a name and username
+3. Copy the token
 
-## 2. Настройки BotFather
+## 2. BotFather settings
 
-### Обязательные настройки
-
-#### Отключить Privacy Mode (для работы в группах)
+Disable Privacy Mode (required to read messages in groups):
 ```
-/setprivacy → выберите бота → Disable
-```
-Это позволит боту читать все сообщения в группах, а не только команды.
-
-#### Включить Inline Mode
-```
-/setinline → выберите бота → введите placeholder (например: 13:00 МСК)
+/setprivacy -> [select bot] -> Disable
 ```
 
-### Рекомендуемые настройки
-
-#### Описание бота
+Enable Inline Mode:
 ```
-/setdescription → выберите бота →
-```
-```
-Конвертер часовых поясов.
-
-Напишите время в формате 13:00 (МСК) и получите время во всех популярных часовых поясах.
-
-Поддерживает 90+ городов и часовых поясов.
+/setinline -> [select bot] -> [enter placeholder, e.g.: 13:00 MSK]
 ```
 
-#### Краткое описание (About)
-```
-/setabouttext → выберите бота →
-```
-```
-Конвертер часовых поясов для СНГ и мира.
-Разработчик: @AnmiTaliDev
-GitHub: github.com/AnmiTaliDev/tzc
-```
-
-#### Команды бота
-```
-/setcommands → выберите бота →
-```
-```
-start - Начать работу
-help - Справка по использованию
-```
-
-#### Аватар бота
-```
-/setuserpic → выберите бота → отправьте изображение
-```
-
-## 3. Установка и запуск
-
-### Локальный запуск
+## 3. Run via Docker
 
 ```bash
-# Клонировать репозиторий
-git clone https://github.com/AnmiTaliDev/tzc.git
-cd tzc
-
-# Установить зависимости
-pip install -r requirements.txt
-
-# Создать .env файл
 cp .env.example .env
-
-# Добавить токен в .env
-nano .env
-
-# Запустить
-python main.py
+docker compose up -d --build
+docker compose logs -f
 ```
 
-### Docker
+## 4. Run locally
+
+See [development.md](development.md) for build instructions.
 
 ```bash
-# Создать .env файл с токеном
-echo "BOT_TOKEN=ваш_токен" > .env
-
-# Запустить
-docker compose up -d --build
-
-# Посмотреть логи
-docker compose logs -f
-
-# Остановить
-docker compose down
+BOT_TOKEN=your_token ./tcz
 ```
-
-## 4. Добавление бота в группу
-
-1. Откройте группу в Telegram
-2. Нажмите на название группы → «Добавить участников»
-3. Найдите вашего бота по username
-4. Добавьте его в группу
-5. (Опционально) Сделайте его администратором для стабильной работы
-
-**Важно:** После изменения Privacy Mode нужно удалить бота из группы и добавить заново.
